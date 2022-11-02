@@ -1,0 +1,98 @@
+
+#board{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background-image: url("https://www.kolhair.co.il/wp-content/uploads/2018/02/%D7%9B%D7%91%D7%99%D7%A9-1-%D7%94%D7%9E%D7%A9%D7%95%D7%93%D7%A8%D7%92-%D7%90%D7%95%D7%A8%D7%9F-%D7%91%D7%9F-%D7%97%D7%A7%D7%95%D7%9F-1.jpg");
+    background-size: cover;
+}
+
+header{
+    color:rgb(112, 105, 105);
+    font-size: 50px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-align: center;
+    
+}
+
+footer{
+    background-color: rgb(106, 105, 105);
+    border: 5px yellow solid;
+    border-radius: 8px;
+    display: flex;
+    color: aliceblue;
+}
+#player1{
+    display: flex;
+    flex-direction: column;
+     justify-content:left;
+}
+#player2{
+   display: flex;
+   /*justify-content:right;*/
+   flex-direction: column;
+   position:absolute;
+   right: 60px;
+}
+.playerName{
+    font-size: 30px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
+.score{
+     font-size: 20px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
+
+
+#currentTurn{
+    color:#00f70c ;
+}
+#noTurn{
+    color:aliceblue ;
+}
+
+
+.cards,.empty, .card-back{
+   background-color: rgb(190, 190, 190);
+    margin: 5px;
+    padding: 30px;
+    border: 5px solid rgb(255, 239, 22);
+    width: 50px;
+    height: 60px;
+    border-radius: 20%;
+   transition: transform .6s cubic-bezier(0.4, 0.0, 0.2, 1);
+   
+    }
+
+
+.cards{
+    color:rgb(63, 27, 113);
+    font-size: 50px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: not-allowed;
+    backface-visibility: hidden;
+   
+    }
+
+.empty{
+    background-color: transparent;
+    color: transparent;
+    cursor: not-allowed;
+}
+
+.card-back{
+/*background-image: url("https://market.marmelada.co.il/photos/570x0/2976550.jpg?source_page=products.view");
+background-size:contain;*/
+cursor: pointer;
+transform: rotateY(180deg);
+ user-select: none;
+
+}
+.card-back:hover{
+    background-color: rgb(119, 118, 118);
+}

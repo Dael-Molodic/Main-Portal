@@ -1,0 +1,26 @@
+.card{
+    background-color: red;
+    border: 3px solid black;
+    width: 30%;
+    margin: 2%;
+    width: 60px;
+    height: 90px
+}
+
+.hidden{
+    visibility: hidden;
+}
+
+.card:hover{
+    background-color: brown;
+    border: 2px solid rgb(66, 61, 61);
+}
+
+
+
+#board{
+    background-color: aqua;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}

@@ -45,7 +45,7 @@ gameLevel.onchange = () => {
   if (gameLevel.value == "hard") numOfCards = 30;
 };
 
-let levels = ["easy", "midium", "hard"];
+let levels = ["easy (10 cards)", "midium (20 cards)", "hard (30 cards)"];
 for (let i = 0; i < levels.length; i++) {
   let option = document.createElement("option");
   option.value = levels[i];
@@ -103,12 +103,17 @@ function startgame() {
     alert("you need to enter 2 defferent names");
     return;
   }
+  if (playerOne.length == 0 || playerTwo.length == 0) {
+    alert("you need to enter a name");
+    return;
+  }
   //removing the excisting elements
   document.getElementById("h1").innerHTML = "";
   //creating the current player alerts
   currentPlayerName = document.createElement("p");
   currentPlayerName.id = "currentPlayer";
-  currentPlayerName.innerText = "current player: " + playerOne;
+  currentPlayerName.innerText =
+    "current player: " + playerOne + " \n score: " + playerOnePoints;
   body.prepend(currentPlayerName);
 
   insertCards(theCards);
@@ -173,10 +178,12 @@ function cardClicked(e) {
 
 function faild(e) {
   if (currentPlayer == playerOne) {
-    currentPlayerName.innerText = "current player: " + playerTwo;
+    currentPlayerName.innerText =
+      "current player: " + playerTwo + " \n score: " + playerTwoPoints;
     currentPlayer = playerTwo;
   } else {
-    currentPlayerName.innerText = "current player: " + playerOne;
+    currentPlayerName.innerText =
+      "current player: " + playerOne + " \n score: " + playerOnePoints;
     currentPlayer = playerOne;
   }
 
@@ -192,8 +199,15 @@ function succeed(e) {
   if (alerting.innerText == "Crazy!!") alerting.innerText = "Unbelivable!!";
   else alerting.innerText = "Crazy!!";
   // scoring the currrent player
-  if (currentPlayer == playerOne) playerOnePoints++;
-  else playerTwoPoints++;
+  if (currentPlayer == playerOne) {
+    playerOnePoints += 5;
+    currentPlayerName.innerText =
+      "current player: " + playerOne + " \n score: " + playerOnePoints;
+  } else {
+    playerTwoPoints += 5;
+    currentPlayerName.innerText =
+      "current player: " + playerTwo + " \n score: " + playerTwoPoints;
+  }
   finishCounter++;
 
   setTimeout(() => {

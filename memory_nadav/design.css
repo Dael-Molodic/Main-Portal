@@ -1,0 +1,114 @@
+@font-face {
+  font-family: "Lunacy";
+  src: url("Fonts/Lunacy.woff") format("woff"),
+    url("Fonts/Lunacy.woff2") format("woff2");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.title {
+  color: #fd6f02;
+  font-family: Lunacy, serif;
+  font-weight: normal;
+  text-align: center;
+  font-size: 6em;
+}
+
+body {
+  margin: 80px;
+  height: 100vh;
+  /* background: radial-gradient(black, gray); */
+  background-image: URL("Images/mmind.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.info-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#board {
+  display: grid;
+  grid-template-columns: repeat(6, 7rem);
+  grid-template-rows: repeat(3, 9rem);
+  grid-gap: 1rem;
+  perspective: 800px;
+}
+
+.card {
+  border: 1px solid radial-gradient(black, rgb(255, 123, 0));
+  position: relative;
+  transform: scale(1);
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+
+.card:hover {
+  cursor: grab;
+  /* transform: rotateY("8deg"); */
+}
+
+.card:active {
+  transform: scale(0.97);
+  transition: transform 0.2s;
+}
+
+.card.flip {
+  transform: rotateY(180deg);
+}
+
+.card.disable {
+  pointer-events: none;
+}
+
+.front,
+.back {
+  border-radius: 6px;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  pointer-events: none;
+}
+
+.front {
+  transform: rotateY(180deg);
+}
+
+.back {
+  /* background-image: URL("Images/qmark.jpg"); */
+  background: radial-gradient(rgb(255, 123, 0), black);
+}
+
+.info-container {
+  display: flex;
+  justify-content: space-around;
+  /* flex-direction: column;
+  align-items: center; */
+}
+
+#diffLvl .flips .timeLeft {
+  color: #fd6f02;
+  font-family: Lunacy, serif;
+  font-weight: normal;
+  text-align: center;
+  font-size: 2em;
+}
+
+@media (max-width: 400px) {
+  .board {
+    grid-template-columns: repeat(2, 7rem);
+    grid-template-rows: repeat(9, 9rem);
+  }
+}

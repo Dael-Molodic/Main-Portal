@@ -3,7 +3,7 @@
     padding: 0;
     
     }
-h1{
+h1 ,h2{
     text-align: center;
     line-height: 1.5;
 }
@@ -61,7 +61,7 @@ body{
     justify-content: center;
     width:min-content ;
 }
-#p1, #p2{
+#p1, #p2, #p3{
     height: 40px;
     background-color: rgb(93, 212, 24);
     border: 1px solid black;
@@ -85,12 +85,13 @@ body{
     font-size: xx-large;
     font-weight: 900;
 }
-#gamelevel{
+#gamelevel , #playerSelector{
     background-color: greenyellow ;
     border-radius: 0.5rem;
     padding: 0.5em;
     font-size: large;
-    margin-top: 10%;
+    margin-top: 5%;
+    margin-left: 5%;
 }
 #play{
     margin-top: 5%;

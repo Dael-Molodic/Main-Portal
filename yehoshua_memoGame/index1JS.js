@@ -44,6 +44,24 @@ gameLevel.onchange = () => {
   if (gameLevel.value == "midium") numOfCards = 20;
   if (gameLevel.value == "hard") numOfCards = 30;
 };
+//number of players
+let playerSelector = document.createElement("select");
+playerSelector.id = "playerSelector";
+for (let i = 0; i < 3; i++) {
+  let option = document.createElement("option");
+  option.value = i + 1;
+  option.text = i + 1;
+  playerSelector.appendChild(option);
+  h2.appendChild(playerSelector);
+}
+
+playerSelector.onchange = () => {
+  numOfPlayers = document.getElementById("playerSelector").value;
+  temp = document.getElementById("playersNames");
+  h2.removeChild(temp);
+
+  playersNames();
+};
 
 let levels = ["easy (10 cards)", "midium (20 cards)", "hard (30 cards)"];
 for (let i = 0; i < levels.length; i++) {
@@ -56,59 +74,75 @@ for (let i = 0; i < levels.length; i++) {
 
 let firstCard = null;
 // Players info
-let playerOne = "";
-let playerTwo = "";
+let numOfPlayers = 1;
+let thePlayers = [];
+let playerOne = thePlayers[0];
+let playerTwo = thePlayers[1];
+let playerThree = thePlayers[2];
 let currentPlayerName;
 let playerOnePoints = 0;
 let playerTwoPoints = 0;
+let playerThreePoints = 0;
 let currentPlayer = playerOne;
 
 let finishCounter = 0;
 // interactive alert for the user
 let alerting = document.getElementById("results");
+playersNames();
 
 function playersNames() {
   newElement = document.createElement("div");
   newElement.id = "playersNames";
-  input = document.createElement("input");
-  input.type = "text";
-  input.placeholder = "Enter player 1 name";
-  input.id = "p1";
-  input2 = document.createElement("input");
-  input2.type = "text";
-  input2.placeholder = "Enter player 2 name";
-  input2.id = "p2";
-  input3 = document.createElement("input");
-  input3.type = "button";
-  input3.placeholder = "Enter player 2 name";
-  input3.id = "play";
-  input3.value = "start playing";
-  input3.onclick = (event) => {
+  for (i = 0; numOfPlayers > i; i++) {
+    input = document.createElement("input");
+    input.type = "text";
+    input.placeholder = "Enter player " + (i + 1) + " name";
+    input.id = "p" + (i + 1);
+    newElement.appendChild(input);
+  }
+
+  button = document.createElement("input");
+  button.type = "button";
+  button.id = "play";
+  button.value = "start playing";
+  button.onclick = () => {
     startgame();
   };
-  newElement.appendChild(input);
-  newElement.appendChild(input2);
-  newElement.appendChild(input3);
-
-  document.getElementById("h1").append(newElement);
+  newElement.appendChild(button);
+  document.getElementById("h2").append(newElement);
 }
 
-playersNames();
+// playersNames();
 
 function startgame() {
   //setting the players names
-  playerOne = document.getElementById("p1").value;
-  playerTwo = document.getElementById("p2").value;
+  thePlayers = [];
+  for (i = 0; i < numOfPlayers; i++) {
+    thePlayers.push(document.getElementById(`p${i + 1}`).value);
+  }
+  playerOne = thePlayers[0];
+  playerTwo = thePlayers[1];
+  playerThree = thePlayers[2];
   if (playerOne == playerTwo) {
     alert("you need to enter 2 defferent names");
     return;
   }
-  if (playerOne.length == 0 || playerTwo.length == 0) {
+  if (playerOne.length == 0) {
     alert("you need to enter a name");
     return;
   }
+  if ((numOfPlayers == 2 || numOfPlayers == 3) && playerTwo.length == 0) {
+    alert("you need to enter a name");
+    return;
+  }
+  if (numOfPlayers == 3 && playerThree.length == 0) {
+    alert("you need to enter a name");
+    return;
+  }
+
   //removing the excisting elements
   document.getElementById("h1").innerHTML = "";
+  document.getElementById("h2").innerHTML = "";
   //creating the current player alerts
   currentPlayerName = document.createElement("p");
   currentPlayerName.id = "currentPlayer";
@@ -177,14 +211,35 @@ function cardClicked(e) {
 }
 
 function faild(e) {
-  if (currentPlayer == playerOne) {
-    currentPlayerName.innerText =
-      "current player: " + playerTwo + " \n score: " + playerTwoPoints;
-    currentPlayer = playerTwo;
-  } else {
-    currentPlayerName.innerText =
-      "current player: " + playerOne + " \n score: " + playerOnePoints;
-    currentPlayer = playerOne;
+  if (numOfPlayers == 1) {
+    currentPlayer == playerOne;
+  }
+
+  if (numOfPlayers == 2) {
+    if (currentPlayer == playerOne) {
+      currentPlayerName.innerText =
+        "current player: " + playerTwo + " \n score: " + playerTwoPoints;
+      currentPlayer = playerTwo;
+    } else {
+      currentPlayerName.innerText =
+        "current player: " + playerOne + " \n score: " + playerOnePoints;
+      currentPlayer = playerOne;
+    }
+  }
+  if (numOfPlayers == 3) {
+    if (currentPlayer == playerOne) {
+      currentPlayerName.innerText =
+        "current player: " + playerTwo + " \n score: " + playerTwoPoints;
+      currentPlayer = playerTwo;
+    } else if (currentPlayer == playerTwo) {
+      currentPlayerName.innerText =
+        "current player: " + playerThree + " \n score: " + playerThreePoints;
+      currentPlayer = playerThree;
+    } else if (currentPlayer == playerThree) {
+      currentPlayerName.innerText =
+        "current player: " + playerOne + " \n score: " + playerOnePoints;
+      currentPlayer = playerOne;
+    }
   }
 
   setTimeout(() => {
@@ -203,10 +258,16 @@ function succeed(e) {
     playerOnePoints += 5;
     currentPlayerName.innerText =
       "current player: " + playerOne + " \n score: " + playerOnePoints;
-  } else {
+  }
+  if (currentPlayer == playerTwo) {
     playerTwoPoints += 5;
     currentPlayerName.innerText =
       "current player: " + playerTwo + " \n score: " + playerTwoPoints;
+  }
+  if (currentPlayer == playerThree) {
+    playerThreePoints += 5;
+    currentPlayerName.innerText =
+      "current player: " + playerThree + " \n score: " + playerThreePoints;
   }
   finishCounter++;
 
@@ -227,15 +288,12 @@ function endGame() {
   currentPlayer.innerHTML = "";
   theBorad.innerHTML = "";
   alerting.innerText =
-    "End game! \n " +
-    playerOne +
-    " got " +
-    playerOnePoints +
-    " points! \n" +
-    playerTwo +
-    " got " +
-    playerTwoPoints +
-    " points! \n";
+    "End game! \n " + playerOne + " got " + playerOnePoints + " points! \n";
+  if (numOfPlayers > 1)
+    alerting.innerText += playerTwo + " got " + playerTwoPoints + " points! \n";
+  if (numOfPlayers > 2)
+    alerting.innerText +=
+      playerThree + " got " + playerThreePoints + " points! \n";
 
   let br = document.createElement("br");
   let newElement = document.createElement("button");
@@ -261,6 +319,7 @@ function playAgain() {
   finishCounter = 0;
   playerOnePoints = 0;
   playerTwoPoints = 0;
+  playerThreePoints = 0;
   currentPlayer = playerOne;
   currentPlayerName.innerText = "current player: " + playerOne;
   theCards = [];

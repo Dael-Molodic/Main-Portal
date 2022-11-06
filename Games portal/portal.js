@@ -384,7 +384,6 @@ function chananelLink() {
     .addEventListener("dblclick", () => {
 
         localStorage.playerArr = JSON.stringify(playerArr);
-
         window.location.href = "../memory_game_chananel/index.html";
 
     })
@@ -397,9 +396,7 @@ function hadarLink() {
     .addEventListener("dblclick", () => {
 
         localStorage.playerArr = JSON.stringify(playerArr);
-
         window.location.href = "../memory game Hadar/index.html";
-
 
     })
 
@@ -411,9 +408,7 @@ function nadavLink() {
     .addEventListener("dblclick", () => {
 
         localStorage.playerArr = JSON.stringify(playerArr);
-
         window.location.href = "../memory_nadav/index.html";
-
 
     })
 
@@ -425,9 +420,7 @@ function  amitLink() {
     .addEventListener("dblclick", () => {
 
         localStorage.playerArr = JSON.stringify(playerArr);
-
         window.location.href = "../memory_AmitGlaicher/memory.open.html";
-
 
     })
 
@@ -439,9 +432,7 @@ function  shiraLink() {
     .addEventListener("dblclick", () => {
 
         localStorage.playerArr = JSON.stringify(playerArr);
-
         window.location.href = "../Shira_memoGame/index_memory.html";
-
 
     })
 
@@ -465,9 +456,7 @@ function  yehoshua() {
     .addEventListener("dblclick", () => {
 
         localStorage.playerArr = JSON.stringify(playerArr);
-
         window.location.href = "../yehoshua_memoGame/index1.html";
-
 
     })
 

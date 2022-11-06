@@ -17,7 +17,6 @@ let avatars = [
 
 init();
 
-// people icon on all games VVVV
 // check on XMl
 
 
@@ -345,7 +344,21 @@ function createRecordsBanner() {
 }
 
 function setGamesLink() {
-   
+
+    daelLink();
+    chananelLink();
+    hadarLink();
+    nadavLink();
+    amitLink();
+    shiraLink();
+    yairLink();
+    yehoshua();
+                    
+}
+
+//--------------Gamse link----------------------------
+
+function daelLink() {
     document.querySelector(".bottom-left .games").addEventListener("dblclick", () => {
 
         if (playerArr.length == 0) {
@@ -360,11 +373,95 @@ function setGamesLink() {
         }
             
         localStorage.playerArr = JSON.stringify(playerArr);
-        window.location.href = 'file:///C:/Users/%D7%A0%D7%A2%D7%9E%D7%99/Desktop/%D7%93%D7%A2%D7%90%D7%9C%20%D7%AA%D7%9B%D7%A0%D7%95%D7%AA/Portfolio/Memory%20Game/homepage.html';
+        window.location.href = "../Dael Molodic/homepage.html";
         
     })
-                    
 }
+
+function chananelLink() {
+
+    document.querySelector(".up-left .games.left")
+    .addEventListener("dblclick", () => {
+
+        localStorage.playerArr = JSON.stringify(playerArr);
+        window.location.href = "../memory_game_chananel/index.html";
+
+    })
+
+}
+
+function hadarLink() {
+
+    document.querySelector(".up-left .games.middle")
+    .addEventListener("dblclick", () => {
+
+        localStorage.playerArr = JSON.stringify(playerArr);
+        window.location.href = "../memory game Hadar/index.html";
+
+    })
+
+}
+
+function nadavLink() {
+
+    document.querySelector(".up-left .games.right")
+    .addEventListener("dblclick", () => {
+
+        localStorage.playerArr = JSON.stringify(playerArr);
+        window.location.href = "../memory_nadav/index.html";
+
+    })
+
+}
+
+function  amitLink() {
+
+    document.querySelector(".up-right .games.bottom")
+    .addEventListener("dblclick", () => {
+
+        localStorage.playerArr = JSON.stringify(playerArr);
+        window.location.href = "../memory_AmitGlaicher/memory.open.html";
+
+    })
+
+}
+
+function  shiraLink() {
+
+    document.querySelector(".bottom-middle .games.middle")
+    .addEventListener("dblclick", () => {
+
+        localStorage.playerArr = JSON.stringify(playerArr);
+        window.location.href = "../Shira_memoGame/index_memory.html";
+
+    })
+
+}
+
+function  yairLink() {
+
+    document.querySelector(".bottom-middle .games.bottom")
+    .addEventListener("dblclick", () => {
+
+        localStorage.playerArr = JSON.stringify(playerArr);
+        window.location.href = "../yair/index.html";
+
+    })
+
+}
+
+function  yehoshua() {
+
+    document.querySelector(".bottom-right .games")
+    .addEventListener("dblclick", () => {
+
+        localStorage.playerArr = JSON.stringify(playerArr);
+        window.location.href = "../yehoshua_memoGame/index1.html";
+
+    })
+
+}
+//-------------------^^^------------------------------
 
 function setReviews() {
 
@@ -386,8 +483,8 @@ function setReviews() {
             for (i=0 ; i<5 ; i++) {
 
                 (i <= starInx)
-                ? revParent.children[i].style.backgroundImage = `url("grade_FILL1_wght500_GRAD0_opsz40.svg")`
-                : revParent.children[i].style.backgroundImage = `url("grade_FILL0_wght500_GRAD0_opsz40.svg")`;
+                ? revParent.children[i].style.backgroundImage = `url("img/grade_FILL1_wght500_GRAD0_opsz40.svg")`
+                : revParent.children[i].style.backgroundImage = `url("img/grade_FILL0_wght500_GRAD0_opsz40.svg")`;
             }
         })
 
@@ -428,11 +525,11 @@ function  setStars(reviewParent, currentStarsNumber) {
         let starBackground;
 
         if (i <= currentStarsNumber) {
-            starBackground = "grade_FILL1_wght500_GRAD0_opsz40.svg";
+            starBackground = "img/grade_FILL1_wght500_GRAD0_opsz40.svg";
         } else if (i<=(currentStarsNumber + 0.5)) {
-            starBackground = "star_half_FILL1_wght500_GRAD0_opsz40.svg";
+            starBackground = "img/star_half_FILL1_wght500_GRAD0_opsz40.svg";
         } else {
-            starBackground = "grade_FILL0_wght500_GRAD0_opsz40.svg";
+            starBackground = "img/grade_FILL0_wght500_GRAD0_opsz40.svg";
         }
 
         reviewParent.children[i-1].style.backgroundImage = `url("${starBackground}")`;

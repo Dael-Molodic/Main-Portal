@@ -1,10 +1,10 @@
 .card{
-    background-color: red;
     border: 3px solid black;
-    width: 30%;
+    width: 80%;
     margin: 2%;
     width: 60px;
-    height: 90px
+    height: 90px;
+    
 }
 
 .hidden{
@@ -16,11 +16,30 @@
     border: 2px solid rgb(66, 61, 61);
 }
 
-
-
+   
 #board{
-    background-color: aqua;
-    padding: 20px;
+        border: 2px solid black;
+        background-image: url("https://www.funkidslive.com/wp-content/uploads/2021/09/Fireman-Sam-Win-1200x675.png");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        width: 100vw;
+        height: 100vh;
+
+        display: flex;
+        flex-wrap: wrap;;
+        }
+
+.button{
+    border: 2px solid black;
+    margin-top: 100px;
+    size: 15px;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap;;
 }
+
+
+ 
+    
+
+

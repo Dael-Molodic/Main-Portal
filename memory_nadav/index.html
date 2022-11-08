@@ -6,28 +6,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="design.css" />
     <script src="logic.js" defer></script>
-    <title>Game</title>
+    <title>Memory-Game</title>
   </head>
 
   <body>
-    <h1 class="title">Memory Game</h1>
-    <br />
-    <div class="info-container">
+    <div class="upper-bar">
+      <div class="upper-bar-button" onclick="restart()">Restart</div>
+      <h1 class="title">Memory Game</h1>
+      <div class="upper-bar-button" onclick="backToPortal()">Exit</div>
+    </div>
+
+    <div id="overlay">
       <label for="diffLvl"
-        >Difficulty level:
+        >Choose difficulty level:
         <select name="diffLvl" id="diffLvl">
-          <option value="100" data-diffLvl="100">Easy</option>
-          <option value="80" data-diffLvl="80">Medium</option>
-          <option value="60" data-diffLvl="60">Hard</option>
-          <option value="45" data-diffLvl="45">Extreme</option>
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+          <option value="extreme">Extreme</option>
         </select>
       </label>
-      <br />
-      <h3 id="flips">Flips: <span class="flips"></span></h3>
-      <br />
-      <h3 id="time">Time: <span class="timeLeft"></span></h3>
-      <br />
+      <button id="startBtn" onclick="overlayOff()">Start Playing!</button>
     </div>
-    <div id="board"></div>
+
+    <div class="container">
+      <div class="left-container">
+        <div class="stats">
+          <!-- <div class="player">
+          player-name
+          <div class="player-name"></div>
+        </div>
+        <div class="points">
+          points
+          <div class="player-points"></div>
+        </div> -->
+          <h3>Player: <span class="player-name"></span></h3>
+          <br />
+          <h3>Points: <span class="player-points"></span></h3>
+        </div>
+      </div>
+
+      <div class="right-container">
+        <div class="info-container">
+          <br />
+          <h3>Time: <span class="timeLeft"></span></h3>
+          <br />
+          <h3>Attempts: <span class="attempts"></span></h3>
+          <br />
+        </div>
+        <div id="board"></div>
+      </div>
+    </div>
   </body>
 </html>

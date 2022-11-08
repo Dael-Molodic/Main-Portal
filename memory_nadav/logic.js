@@ -1,16 +1,34 @@
 //global variables:
 const board = document.getElementById("board");
-const timeLeft = document.querySelector("timeLeft");
-// let extreme = 45,
-//   hard = 60,
-//   medium = 80,
-//   easy = 100;
-// let time = easy || medium || hard || extreme;
+const timeLeft = document.querySelector(".timeLeft");
+const attempts = document.querySelector(".attempts");
+let playerName = document.querySelector(".player-name");
+let playerPoints = document.querySelector(".player-points");
+
 let firstCard, secondCard;
 let hasFlipped = false;
 let lockBoard = false;
+let attemptsCounter = 0;
+let points = 0;
+let totalPoints;
+let pName = "";
+let seconds;
 
-// timeLeft.textContent = difficultyChoise();
+// let seconds = 60; //difficultyChoise();
+
+//withdraws the relevant details from the localStorage
+function updateData() {
+  // points = Number(localStorage.getItem("score"));
+  playerPoints.textContent = points;
+  pName = JSON.parse(localStorage.playerArr[0].nickName);
+  playerName.textContent = pName;
+}
+
+let time = setInterval(() => {
+  seconds--;
+  timeLeft.textContent = seconds;
+  if (seconds == 0) gameOver();
+}, 1000);
 
 const getCardsData = () => [
   { imgSrc: "./Images/clarinet.jpg", name: "clarinet" },
@@ -46,22 +64,30 @@ function shuffleCards(arr) {
   return arr;
 }
 
-//runs the functions by correct order
+//runs the functions in the right order
 function init() {
   shuffleCards(cards);
-  difficultyChoise();
   for (idx in cards) {
     const card = createCard(idx);
     board.appendChild(card);
   }
+  overlayOn();
+  timeLeft.textContent = seconds;
+  updateData();
 }
 
 init();
 
 function difficultyChoise() {
   const diffLevel = document.getElementById("diffLvl");
-  const gameTime = diffLevel.options[diffLevel.selectedIndex].value;
-  return gameTime;
+  // const gameTime = diffLevel.options[diffLevel.selectedIndex].value; //not working
+  // return gameTime;
+  diffLevel.onchange = () => {
+    if (diffLevel.value == "easy") seconds = 60;
+    if (diffLevel.value == "medium") seconds = 45;
+    if (diffLevel.value == "hard") seconds = 30;
+    if (diffLevel.value == "extreme") seconds = 18;
+  };
 }
 
 //generates the cardElement in the html & build it's needed atrributes
@@ -92,9 +118,6 @@ function cardClicked(e) {
   if (!hasFlipped) {
     hasFlipped = true;
     firstCard = clickedCard;
-    // console.log(firstCard);
-    // console.log(firstCard.getAttribute("name")); //how to get an html attribute from the e.target
-    // console.log(firstCard.front.alt);
     return;
   }
   //else - if it's the second-clicked-card:
@@ -104,7 +127,7 @@ function cardClicked(e) {
 
 //checks for a match between the 2 cards
 function doCardsMatch() {
-  // console.log(firstCard);
+  attempts.textContent = ++attemptsCounter;
   let match =
     firstCard.getAttribute("name") === secondCard.getAttribute("name");
   match ? disableCards() : hideCards();
@@ -115,6 +138,11 @@ function disableCards() {
   firstCard.classList.add("disable");
   secondCard.classList.add("disable");
   resetBoard();
+  points += 5;
+  playerPoints.textContent = points;
+  setTimeout(() => {
+    checkForWin();
+  }, 1000);
 }
 
 //hides the cards content(images)
@@ -135,10 +163,52 @@ function resetBoard() {
   lockBoard = false;
 }
 
+function checkForWin() {
+  let foundCards = document.querySelectorAll(".disable");
+  if (foundCards.length === cards.length) {
+    points += 15;
+    playerPoints.textContent = points;
+
+    localStorage.setItem(
+      `${playerName}Score`,
+      Number(localStorage.getItem(`${playerName}Score`)) + points
+    );
+
+    confirm("congratulations! you won!!!\nto play again - press OK")
+      ? restart()
+      : clearInterval(time);
+  }
+}
+
+function gameOver() {
+  lockBoard = true;
+  confirm("GAME-OVER!\nto play again - press OK")
+    ? restart()
+    : clearInterval(time);
+}
+
 //restarts the game
 function restart() {
-  shuffleCards(cards);
-  let frontsList = document.querySelectorAll(".front");
-  // let backsList = document.querySelectorAll(".back"); //needed??
-  let cardsList = document.querySelectorAll(".card");
+  // let cardsList = document.querySelectorAll(".card");
+  // cardsList.forEach((c) => c.classList.remove("flip"));
+  // shuffleCards(cards);
+  // flips.textContent = 0;
+  // clearInterval(time);
+  // timeLeft.textContent = 60;
+  totalPoints += points;
+  window.location.reload();
+}
+
+function overlayOn() {
+  document.getElementById("overlay").style.display = "block";
+  difficultyChoise();
+}
+
+function overlayOff() {
+  document.getElementById("overlay").style.display = "none";
+}
+
+//sends the relevant details to the localStorage and goes back to the main portal
+function backToPortal() {
+  window.location.href = "../Game portal/portal.html";
 }

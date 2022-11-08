@@ -1,8 +1,8 @@
-@font-face {
+/* @font-face {
   font-family: "Lunacy";
   src: url("Fonts/Lunacy.woff") format("woff"),
     url("Fonts/Lunacy.woff2") format("woff2");
-}
+} */
 
 * {
   margin: 0;
@@ -10,19 +10,11 @@
   box-sizing: border-box;
 }
 
-.title {
-  color: #fd6f02;
-  font-family: Lunacy, serif;
-  font-weight: normal;
-  text-align: center;
-  font-size: 6em;
-}
-
 body {
   margin: 80px;
   height: 100vh;
-  /* background: radial-gradient(black, gray); */
-  background-image: URL("Images/mmind.jpg");
+  /* background: radial-gradient(black, #808080); */
+  background-image: URL("Images/base.webp");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -32,10 +24,67 @@ body {
   align-items: center;
 }
 
-.info-container {
+.upper-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.upper-bar-button {
+  height: 40px;
+  width: 70px;
+  margin: auto;
+  border-radius: 6px;
+  border: 1px solid #272525;
+  color: #808080;
+  /* background: radial-gradient(black, radial-gradient(black, #808080)); */
+  /* align-self: center;
+  text-align: center;
+  justify-content: center; */
+}
+
+.upper-bar-button:active {
+  transform: scale(0.97);
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  margin: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ----------------------------------------------------------------------------------------------- */
+
+.right-container {
+  height: 100%;
+  width: 80vw;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
+}
+
+h1 {
+  color: #808080;
+  font-family: "Trocchi", serif;
+  font-size: 80px;
+  font-weight: normal;
+  line-height: 48px;
+  margin: 0;
+}
+
+/* .title {
+  color: #808080;
+  font-family: Lunacy, serif;
+  font-weight: normal;
+  text-align: center;
+  font-size: 6em;
+} */
+
+.info-container {
+  display: flex;
+  justify-content: space-around;
 }
 
 #board {
@@ -47,7 +96,7 @@ body {
 }
 
 .card {
-  border: 1px solid radial-gradient(black, rgb(255, 123, 0));
+  border: 1px solid radial-gradient(black, #808080);
   position: relative;
   transform: scale(1);
   transform-style: preserve-3d;
@@ -88,14 +137,7 @@ body {
 
 .back {
   /* background-image: URL("Images/qmark.jpg"); */
-  background: radial-gradient(rgb(255, 123, 0), black);
-}
-
-.info-container {
-  display: flex;
-  justify-content: space-around;
-  /* flex-direction: column;
-  align-items: center; */
+  background: radial-gradient(#808080, black);
 }
 
 #diffLvl .flips .timeLeft {
@@ -106,9 +148,64 @@ body {
   font-size: 2em;
 }
 
-@media (max-width: 400px) {
+/* ---------------------------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------------- */
+
+.left-container {
+  height: 100%;
+  width: 20vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.stats {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: stretch;
+}
+
+.player,
+.points {
+  height: 80px;
+  width: 50%;
+  /* border-radius: 6px; */
+  /* border: 1px solid whitesmoke; */
+  color: #808080;
+}
+
+#overlay {
+  position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(101, 49, 19, 0.5); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#startBtn {
+  height: 40px;
+  width: 160px;
+  background-color: silver;
+}
+
+#startBtn:hover {
+  background-color: #272525;
+  transform: scale(0.97);
+}
+
+/* @media (max-width: 400px) {
   .board {
     grid-template-columns: repeat(2, 7rem);
     grid-template-rows: repeat(9, 9rem);
   }
-}
+} */

@@ -448,7 +448,7 @@ function stopGame() {
     return "\nTime keeps running";
 }
 
-function addScoreToMemo(score0, score1, score2, nickname0, nickname1, nickname2) {
+export default function addScoreToMemo(score0, score1, score2, nickname0, nickname1, nickname2) {
     
     let playerArr = JSON.parse(localStorage.playerArr);
 

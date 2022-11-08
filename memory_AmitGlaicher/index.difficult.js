@@ -46,6 +46,69 @@ function shuffle(arr) {
   return cards
 }
 
+
+let turnCounter = 0;
+
+
+let playerNum = 3; // from localstorage;
+document.getElementById("body").appendChild(playerBanner());
+
+
+function playerBanner(){
+  let playerBanner = document.createElement("div")
+
+  let player0 = document.createElement("div")
+  player0.id = "player0";
+  let player1 = document.createElement("div")
+  player1.id = "player1"
+  let player2 = document.createElement("div")
+  player2.id = "player2"
+
+  let playerName0 = document.createElement("div")
+  playerName0.id = "playerName0";
+  // playerName0.innerText = localStorage...
+  let playerName1 = document.createElement("div")
+  playerName1.id = "playerName1";
+  let playerName2 = document.createElement("div")
+  playerName2.id = "playerName2";
+  
+  
+  let newElement0 = document.createElement("div")
+  newElement0.id = "newElement0"
+  newElement0.innerText = 0;
+  
+  let newElement1 = document.createElement("div")
+  newElement1.id = "newElement1"
+  newElement1.innerText = 0;
+  
+  let newElement2 = document.createElement("div")
+  newElement2.id = "newElement2"
+  newElement2.innerText = 0;
+  
+    player0.appendChild(playerName0);
+    player0.appendChild(newElement0);
+  
+    player1.appendChild(playerName1);
+    player1.appendChild(newElement1);
+  
+    player2.appendChild(playerName2);
+    player2.appendChild(newElement2);
+  
+  let playerDivs = [player0, player1, player2];
+
+  for (i=0 ; i<playerNum ; i++) {
+    playerBanner.appendChild(playerDivs[i]);
+  }
+  
+
+  return playerBanner;
+}
+
+
+
+
+
+
 function createCard(card,x)
 {
    const newElement = document.createElement("div")
@@ -56,11 +119,16 @@ newElement.onclick= () => {onCardClick(card, "id"+x)} ;
 return newElement;
 }
 
+// function flipCard(){
+//   this.classList.toggle("flip")
+// }
+
 var counter =0;
 let bool = false;
 let firstCard=0;
 let firstCardId = -1;
-function onCardClick(cardTxt, id){
+function onCardClick(cardTxt, id, player){
+
     document.getElementById(id).className ="card open"
    
     if (bool==false || id==firstCardId){
@@ -85,7 +153,8 @@ function onCardClick(cardTxt, id){
     card2="";
         bool = false;
         counter++;
-        console.log(counter);
+        let score = Number(document.getElementById(`newElement${turnCounter}`).innerText)
+        document.getElementById(`newElement${turnCounter}`).innerText = score += 5;
     return
     },1000);
     }
@@ -94,10 +163,13 @@ function onCardClick(cardTxt, id){
         document.getElementById(id).className="card";
         document.getElementById(firstCardId).className = "card";
         bool = false;
+        turnCounter = ( (turnCounter + 1) % playerNum);
         return
     }, 1000);
   }
 }
+
+
 if (counter==8)
   {
 alert("the game is over")
@@ -108,3 +180,83 @@ confirm("do you want to play again?")
 resetBtn.addEventListener('click', () => {
   location.reload()
 });
+
+
+backMainBtn.addEventListener('click', () => {
+  window.location.href="../Games pirtal/portal.html";
+})
+
+
+
+
+
+// function createCard(card,x)
+// {
+//    const newElement = document.createElement("div")
+// newElement.id="id"+x;
+// newElement.className= "card"
+// newElement.style.backgroundImage = "url("+card+")";
+// newElement.onclick= () => {onCardClick(card, "id"+x)} ;
+// return newElement;
+// }
+
+// var counter =0;
+// let bool = false;
+// let firstCard=0;
+// let firstCardId = -1;
+// function onCardClick(cardTxt, id){
+//     document.getElementById(id).className ="card open"
+   
+//     if (bool==false || id==firstCardId){
+//         firstCard=cardTxt;
+//         firstCardId=id
+//         bool = true;
+//         return
+//     }
+//     if (cardTxt==firstCard){ setTimeout(()=> {
+//     let card1="";
+//     card1=document.getElementById(id);
+//     card1.onclick = () =>{};
+//     card1.style.backgroundImage = "none"
+//     card1.className ="twin";
+//     card1="";
+
+//     let card2="";   
+//     card2 = document.getElementById(firstCardId)
+//     card2.onclick = () =>{};
+//     card2.style.backgroundImage = "none"
+//     card2.className ="twin";
+//     card2="";
+//         bool = false;
+//         counter++;
+//         console.log(counter);
+//     return
+//     },1000);
+//     }
+//     if (cardTxt!==firstCard){
+//     setTimeout(() => {
+//         document.getElementById(id).className="card";
+//         document.getElementById(firstCardId).className = "card";
+//         bool = false;
+//         return
+//     }, 1000);
+//   }
+// }
+// if (counter==8)
+//   {
+// alert("the game is over")
+// confirm("do you want to play again?") 
+//   } 
+
+  
+// resetBtn.addEventListener('click', () => {
+//   location.reload()
+// });
+
+// backMainBtn.addEventListener('click', () => {
+//   window.location.href="../Games pirtal/portal.html";
+// })
+// // function backToPortal()
+// // {
+// //     window.location.href="../Games pirtal/portal.html";
+// // }

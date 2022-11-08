@@ -1,4 +1,3 @@
-localStorage.clear();
 let playersNum;
 let playerCount = 0;
 let currentAvatar = 0;
@@ -376,7 +375,7 @@ function daelLink() {
         }
             
         localStorage.playerArr = JSON.stringify(playerArr);
-        window.location.href = "../Dael Molodic/homepage.html";
+        window.location.href = "../Memory Game - Dael Molodic/homepage.html";
         
     })
 }

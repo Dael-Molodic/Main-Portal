@@ -47,3 +47,7 @@ box-shadow: inset 0px 0px 50px 100px rgba(210, 105, 30, 0);
     background: rgba(0, 255, 98, 0.404);
     box-shadow: inset 0px 0px 50px 100px rgba(210, 105, 30, 0);
   }
+
+  #buttoms{
+    margin: 50px;
+  }

@@ -134,5 +134,5 @@ function checkVal() {
 }
 
 function backToPortal() {
-    window.location.href = "file:///C:/Users/%D7%A0%D7%A2%D7%9E%D7%99/Desktop/%D7%93%D7%A2%D7%90%D7%9C%20%D7%AA%D7%9B%D7%A0%D7%95%D7%AA/Portfolio/Games%20portal/portal.html"
+    window.location.href = "../Games portal/portal.html";
 }

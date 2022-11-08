@@ -97,15 +97,13 @@ function playerBanner(){
   let playerDivs = [player0, player1, player2];
 
   for (i=0 ; i<playerNum ; i++) {
+    playerDivs[i].children[0].innerText="stam masheho";  
     playerBanner.appendChild(playerDivs[i]);
   }
   
 
   return playerBanner;
 }
-
-
-
 
 
 
@@ -123,7 +121,7 @@ return newElement;
 //   this.classList.toggle("flip")
 // }
 
-var counter =0;
+let counter =0;
 let bool = false;
 let firstCard=0;
 let firstCardId = -1;
@@ -138,6 +136,7 @@ function onCardClick(cardTxt, id, player){
         return
     }
     if (cardTxt==firstCard){ setTimeout(()=> {
+    counter++;
     let card1="";
     card1=document.getElementById(id);
     card1.onclick = () =>{};
@@ -152,9 +151,13 @@ function onCardClick(cardTxt, id, player){
     card2.className ="twin";
     card2="";
         bool = false;
-        counter++;
         let score = Number(document.getElementById(`newElement${turnCounter}`).innerText)
         document.getElementById(`newElement${turnCounter}`).innerText = score += 5;
+        
+          if (counter==8)
+              { 
+            alert("the game is over")
+              } 
     return
     },1000);
     }
@@ -170,11 +173,6 @@ function onCardClick(cardTxt, id, player){
 }
 
 
-if (counter==8)
-  {
-alert("the game is over")
-confirm("do you want to play again?") 
-  } 
 
   
 resetBtn.addEventListener('click', () => {
@@ -183,5 +181,5 @@ resetBtn.addEventListener('click', () => {
 
 
 backMainBtn.addEventListener('click', () => {
-  window.location.href="../Games pirtal/portal.html";
+  window.location.href="../Games portal/portal.html";
 })

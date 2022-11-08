@@ -26,6 +26,7 @@ const picture27 = "pexels-valiphotos-589840.jpg";
 const cards = [picture1, picture2, picture3, picture4, picture5, picture6, picture7, picture8, picture9, picture10, picture11, picture12, picture13, picture14, picture15, picture16, picture17, picture17, picture19, picture19, picture21, picture21, picture23, picture23, picture25, picture25, picture27, picture27];
 init(cards);
 
+
 function init(arr)
 {
     shuffle(arr)
@@ -43,11 +44,11 @@ function shuffle(arr) {
       cards[i] = cards[rndIndx];
       cards[rndIndx] = temp;
     }
-  return cards
-}
+    return cards
+  }
+  
 
-
-let turnCounter = 0;
+  let turnCounter = 0;
 
 
 let playerNum = 3; // from localstorage;
@@ -123,7 +124,7 @@ return newElement;
 //   this.classList.toggle("flip")
 // }
 
-var counter =0;
+let counter =0;
 let bool = false;
 let firstCard=0;
 let firstCardId = -1;
@@ -138,6 +139,7 @@ function onCardClick(cardTxt, id, player){
         return
     }
     if (cardTxt==firstCard){ setTimeout(()=> {
+    counter++;
     let card1="";
     card1=document.getElementById(id);
     card1.onclick = () =>{};
@@ -152,9 +154,13 @@ function onCardClick(cardTxt, id, player){
     card2.className ="twin";
     card2="";
         bool = false;
-        counter++;
         let score = Number(document.getElementById(`newElement${turnCounter}`).innerText)
         document.getElementById(`newElement${turnCounter}`).innerText = score += 5;
+        
+          if (counter==8)
+              { 
+            alert("the game is over")
+              } 
     return
     },1000);
     }
@@ -170,11 +176,6 @@ function onCardClick(cardTxt, id, player){
 }
 
 
-if (counter==8)
-  {
-alert("the game is over")
-confirm("do you want to play again?") 
-  } 
 
   
 resetBtn.addEventListener('click', () => {
@@ -183,80 +184,5 @@ resetBtn.addEventListener('click', () => {
 
 
 backMainBtn.addEventListener('click', () => {
-  window.location.href="../Games pirtal/portal.html";
+  window.location.href="../Games portal/portal.html";
 })
-
-
-
-
-
-// function createCard(card,x)
-// {
-//    const newElement = document.createElement("div")
-// newElement.id="id"+x;
-// newElement.className= "card"
-// newElement.style.backgroundImage = "url("+card+")";
-// newElement.onclick= () => {onCardClick(card, "id"+x)} ;
-// return newElement;
-// }
-
-// var counter =0;
-// let bool = false;
-// let firstCard=0;
-// let firstCardId = -1;
-// function onCardClick(cardTxt, id){
-//     document.getElementById(id).className ="card open"
-   
-//     if (bool==false || id==firstCardId){
-//         firstCard=cardTxt;
-//         firstCardId=id
-//         bool = true;
-//         return
-//     }
-//     if (cardTxt==firstCard){ setTimeout(()=> {
-//     let card1="";
-//     card1=document.getElementById(id);
-//     card1.onclick = () =>{};
-//     card1.style.backgroundImage = "none"
-//     card1.className ="twin";
-//     card1="";
-
-//     let card2="";   
-//     card2 = document.getElementById(firstCardId)
-//     card2.onclick = () =>{};
-//     card2.style.backgroundImage = "none"
-//     card2.className ="twin";
-//     card2="";
-//         bool = false;
-//         counter++;
-//         console.log(counter);
-//     return
-//     },1000);
-//     }
-//     if (cardTxt!==firstCard){
-//     setTimeout(() => {
-//         document.getElementById(id).className="card";
-//         document.getElementById(firstCardId).className = "card";
-//         bool = false;
-//         return
-//     }, 1000);
-//   }
-// }
-// if (counter==8)
-//   {
-// alert("the game is over")
-// confirm("do you want to play again?") 
-//   } 
-
-  
-// resetBtn.addEventListener('click', () => {
-//   location.reload()
-// });
-
-// backMainBtn.addEventListener('click', () => {
-//   window.location.href="../Games pirtal/portal.html";
-// })
-// // function backToPortal()
-// // {
-// //     window.location.href="../Games pirtal/portal.html";
-// // }

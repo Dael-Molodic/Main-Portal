@@ -1,3 +1,4 @@
+localStorage.clear();
 let playersNum;
 let playerCount = 0;
 let currentAvatar = 0;

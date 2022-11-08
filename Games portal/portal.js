@@ -336,8 +336,10 @@ function createRecordsBanner() {
     document.getElementById("records-banner").children[2].innerHTML = `<div class="img" id="second"></div>`;
     document.getElementById("records-banner").children[3].innerHTML = `<div class="img" id="third"></div>`;
     
-    for (i=0 ; i<3 ; i++) {
-        document.getElementById("records-banner").children[i+1].innerHTML += `${scoreArr[i].userName} <span>${scoreArr[i].Score} points</span>`;
+    if(scoreArr[0].Score) {
+        for (i=0 ; i<3 ; i++) {
+            document.getElementById("records-banner").children[i+1].innerHTML += `${scoreArr[i].userName} <span>${scoreArr[i].Score} points</span>`;
+        }
     }
 
     PopUp(".records-banner");
@@ -373,7 +375,7 @@ function daelLink() {
         }
             
         localStorage.playerArr = JSON.stringify(playerArr);
-        window.location.href = "../Dael Molodic/homepage.html";
+        window.location.href = "../Memory Game - Dael Molodic/homepage.html";
         
     })
 }
